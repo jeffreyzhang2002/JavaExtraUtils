@@ -1,30 +1,33 @@
 # Java Extra Utils Library:
-Welcome to the Java Extra Utils Library. This library is for the lazy developer who thinks it wayyy to difficult to type out basic Java Library syntax and so will go out of his way to find some random online solution that may or may not fix his problems.
+Welcome to the Java Extra Utils Library. This is simple library that adds some basic quality of life changes to Java.
 
 ## Features:
 
 **1. Printing:**
-> Ever feel that Java'a default print function is unecessarly long and a recipe for 100+ character lines of code that require you to scroll all the way to right? Well no long will you need to sit there and type out the entire `System.out.println()` but instead type `$()` and directly display what you need!
+> This library simplifies printing within Java. `System.out.println()` is replaced with `$()` and `System.out.print()` is replaced with `_$()`. Moreover these methods allow for artibraty number of inputs and can be used to print arrays!
 
-*Yes $ is a legal name for a Java method. Apparently almost all UTF-8 character that are not symbols are allowed.*
+*Apparently $ is a legal method name for a Java method. Java uses UTF-8 character encoding so there are actually a lot of symbols that can be used for naming*
 
-**2. Random Math and Physics Constants:**
-> Why type Math.PI when you can go search online for a copy pastable `π` and then directly and it into your code? This works with other constants such as e, phi, etc (adding more in the future)
+**2. Math and Physics Constants:**
+> Why type Math.PI when you can directly input `π` into your code? This is great for shorting equations and making them concise
 
-**3. TBD**
+**3. Assignable Symbols**
+> Assign values to symbols such as `Φ`, `φ`, etc directly in your code! This isn't the most useful but I though it was cool that these are valid names for Java variables
+
+**4. TBD**
 > Probably some other random thing I feel like doing. Feel Free to leave suggestions
 
 ## Installation:
-There are two ways I can think of for you to use this code in your project. 
+There are two ways to use this code in your project. I recommend the first way because it is easier. 
 1. Simply copy the package directly into your project and use it that way. Honestly this is terrible practice but the point of this project is the be quick, easy and painless. Great for small and simple projects
-2. Download the released jar file and add it to depencies. IDK why you would decided to go with this route
+2. Download the released jar file and add it to dependencies.
 
 ## Example Code:
 **1. Printing to Console**
-Traditionally `System.out.println()` or `System.out.print()` are used for writing to the console. I have no idea why this must over 15 characters long when other languages to fine with `print()`,`console.log`,`std::cout`. In this library, I decided to make printing `$()`. This function takes in a list of Object (basically anything you want) and prints it. Also it supports chaning and variable number of argument
+Traditionally `System.out.println()` or `System.out.print()` are used for writing to the console. I have no idea why these simple commands must be over 15 characters long when other languages do fine with `print()`,`console.log`,`std::cout`. In this library, I decided to make printing really easy. Instead of `System.out.println()` use `$()` and instead of `System.out.print()` use `_$()` . These functions takes in a list of Objects (basically anything you want) and prints it out on your screen formatted nicely.
 ```
 //This Line import the project into the file
-import static ExtraUtils.ExtraUtils.Print.$;
+import static ExtraUtils.Printer.Print.*;
 
 public class MyClass{
     public static void main(String[] args) {
@@ -50,31 +53,42 @@ public class MyClass{
         * Chain
         * Commands  
         */
+        
+        _$("Hello")._$("World")._$("Chain")._$("Commands");
+        /*
+        * Outputs:
+        * Hello World Chain Commands  
+        */
+        
+        int[] array = {1, 2, 3, 4, 5, 6};
+        //primitive arrays must be in there own function!
+        
+        $("My Array", array); //throws ClassCastException instead do this
+        _$("My Array").$(array); //Seprating the primitive array from the String will fix this issue
+        
+        //Also String templates are allowed!
+        $("Template string with arguments {} and {} and {}!", 1, 2, 3);
+        _$("1 + 1 = {}", (1 + 1));
     }
 }
 ```
-There are also public static fields that can be changed to have this method better suit your needs. 
+In the Print class, There are public static fields that can be changed to have the program better suit your needs. For example, The `output` and `delimeter` fields. The `output` field is a `PrintStream` that is used to determine where your output will be by default this will be set to `System.out`. The `delimeter` field is a String that represents what goes between each of the arguments passed in. 
 ```
-import ExtraUtils.ExtraUtils;
+import ExtraUtils.Printer.*;
 public class MyClass
 {
     public static void main(String[] args)
     {
-        //default values
+        //default values that you can change
         ExtraUtils.Print.delimiter = " ";
         ExtraUtils.Print.output = System.out;
     }
 }
 ```
-
-Lastly if your remember back to the day you just learned java, you might remember `System.out.print(anArray)` return the memory address and so students are forced to instead import the `Arrays` class and do `System.out.println(Arrays.toString(anArray))`. Yeah I think that way to annoying to type so `$()` will handel arrays automatically and print the content.
-
 **Math Constants**
-Basically allows you to type certain math constants directly into equations. Honestly this is probably more trouble than it is worth but I think its cool.
+Basically this allows you to type certain math constants directly into equations. Honestly this is probably more trouble than it is worth but I think its cool.
 ```
-import static ExtraUtils.ExtraUtils.MathConstants.π;
-import static ExtraUtils.ExtraUtils.MathConstants.φ;
-// Other constants are also supported
+import static ExtraUtils.MathConstants.*;
 
 public class Main
 {
@@ -89,26 +103,10 @@ public class Main
     }
 }
 ```
+In addition to these constants, other greek letters can be set to certain values. 
 
-In addition to these constants, other greek letters can be set to certain values. These values all have double precision.
-
-```
-import static ExtraUtils.ExtraUtils.Greek.Δ;
-// Other letters are also supported
-
-public class Main
-{
-    public static void main(String[] args)
-    {
-        Δ = 2;
-        
-        double a = Δ;
-    }
-}
-```
 ## License:
-MIT license. Do what ever you want with this terrible code but if you like like what you see please star the repository
-
+MIT license. Do what ever you want with this code but if you like like what you see please star the repository.
 
 ## Disclamer:
-This project uses a lot of wierd Java features that I am not 100% sure works on every computer. This was written with Intellj Community Edition. Also this was just a random project I thought of cause so the code is not optimized at all.
+This project uses a lot of wierd Java features that I am not 100% sure works on every computer. This was written with IntellJ Community Edition. Also this was just a random project I thought of so the code is not optimized at all. Use at your own caution.
