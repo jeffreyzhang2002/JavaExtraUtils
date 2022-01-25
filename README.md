@@ -53,7 +53,7 @@ public class MyClass{
     }
 }
 ```
-There are public static fields that can be changed to have `$()` better suit your needs. The `newLine` and `delimeter` field. NewLine is a boolean that that reperesent if a new line character will be appended at the end of the function, Basically treats `$()` as `System.out.println()`. The delimeter field is a String. This represent what goes between each of the arguments passed in. By default `newLine = true` and `delimeter = " "`. 
+There are also public static fields that can be changed to have this method better suit your needs. 
 ```
 import ExtraUtils.ExtraUtils;
 public class MyClass
@@ -62,7 +62,7 @@ public class MyClass
     {
         //default values
         ExtraUtils.Print.delimiter = " ";
-        ExtraUtils.Print.newLine = true;
+        ExtraUtils.Print.output = System.out;
     }
 }
 ```
