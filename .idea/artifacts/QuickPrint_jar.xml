@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="QuickPrint:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/QuickPrint_jar</output-path>
+    <root id="archive" name="QuickPrint.jar">
+      <element id="module-output" name="QuickPrint" />
+    </root>
+  </artifact>
+</component>
